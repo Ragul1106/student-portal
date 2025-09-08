@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>{{ student.name }}</title></head>
+<body>
+  <h1>{{ student.name }}</h1>
+  <ul>
+    <li><strong>Age:</strong> {{ student.age }}</li>
+    <li><strong>Grade:</strong> {{ student.grade }}</li>
+    <li><strong>Email:</strong> {{ student.email }}</li>
+  </ul>
+
+  <p>
+    <a href="{% url 'students:edit' student.pk %}">Edit</a> |
+    <a href="{% url 'students:delete' student.pk %}">Delete</a> |
+    <a href="{% url 'students:list' %}">Back to list</a>
+  </p>
+
+  <p>API (JSON) for this student: <a href="/api/students/{{ student.pk }}/">/api/students/{{ student.pk }}/</a></p>
+</body>
+</html>

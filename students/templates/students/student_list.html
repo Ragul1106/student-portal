@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Students — List</title>
+</head>
+<body>
+  <h1>Students</h1>
+  <p><a href="{% url 'students:add' %}">Add new student</a> | <a href="/api/students/">View JSON (API)</a></p>
+
+  {% if students %}
+    <table border="1" cellpadding="6" cellspacing="0">
+      <thead>
+        <tr>
+          <th>ID</th><th>Name</th><th>Age</th><th>Grade</th><th>Email</th><th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for s in students %}
+        <tr>
+          <td>{{ s.id }}</td>
+          <td><a href="{% url 'students:detail' s.pk %}">{{ s.name }}</a></td>
+          <td>{{ s.age }}</td>
+          <td>{{ s.grade }}</td>
+          <td>{{ s.email }}</td>
+          <td>
+            <a href="{% url 'students:edit' s.pk %}">Edit</a> |
+            <a href="{% url 'students:delete' s.pk %}">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>No students yet.</p>
+  {% endif %}
+</body>
+</html>
